@@ -51,13 +51,7 @@ revealOptions:
 
 ### Example
 
-![](images/chain-complex.svg)
-
-----
-
-### Example
-
-todo: show the boundary matrices
+<img src="images/chain-complex.svg" width="65%">
 
 ----
 
@@ -65,11 +59,25 @@ $$\Huge{\partial\_k\cdot\partial\_{k + 1} = 0}$$
 
 ----
 
-### Consequences
+### Invariance
 
-* Flipping signs or permuting both columns of $\partial\_k$ and rows of $\partial\_{k + 1}$ gives the same complex.
+* Suppose that $\\{\partial\_k\\}$ is a chain complex and define
+$$\begin{align}
+\partial\_k' & = \partial\_k\cdot A, \\\\
+\partial\_{k + 1}' & = B\cdot \partial\_{k + 1}
+\end{align}$$
+* Question: What will make $\partial\_k'\cdot\partial\_{k + 1}' = 0$?
+* Answer: $\text{image}(\partial\_{k + 1})$ invariant under $A \cdot B$
+
+----
+
+### Examples
+
+* Examples where $A \cdot B = I$:
+  - $A$ = some sign flips; $B = A$
+  - $A$ = permutation; $B$ = $A^*$
 ![](images/orientation-swap.svg)
-* We can convert between simplicial and chain complex representation.
+* Later we'll see more.
 
 ----
 
@@ -77,7 +85,7 @@ $$\Huge{\partial\_k\cdot\partial\_{k + 1} = 0}$$
 
 * Add a *bottom* cell $\bot$ of dim -1; define $\partial v = \bot$.
 * $\Rightarrow$ $\partial\_0 = \mathbf{1}^*$, where $\mathbf{1}$ is the column vector of all 1s.
-* $\partial_0\partial_1 = 0$ implies that for every edge $e$,
+* $\partial\_0\partial\_1 = 0$ implies that for every edge $e$,
 $$e = v\_i - v\_j,$$
 i.e. every edge goes from one vertex to another.
 
@@ -91,17 +99,6 @@ i.e. every edge goes from one vertex to another.
 ### Transformations
 
 * Idea: represent meshes as matrices $\Rightarrow$ we can use linear algebraic reasoning to transform them
-* Suppose that $\\{\partial\_k\\}$ is a cell complex and define
-$$\begin{align}
-\partial\_k' & = \partial\_k\cdot A, \\\\
-\partial\_{k + 1}' & = B\cdot \partial\_{k + 1}
-\end{align}$$
-What do we need of $A$, $B$ to have $\partial_k'\cdot\partial_{k + 1}' = 0$?
-
-----
-
-### Merge
-
 * Simplest transformation: *merge* two cells.
 * In linear algebraic terms: add the corresponding columns of the matrix!
 
@@ -109,7 +106,13 @@ What do we need of $A$, $B$ to have $\partial_k'\cdot\partial_{k + 1}' = 0$?
 
 ### Example
 
-todo: image
+![](images/merge-2.svg)
+
+----
+
+### Example
+
+![](images/merge-1.svg)
 
 ----
 
@@ -117,6 +120,7 @@ todo: image
 
 * Harder problem: split a polytope along a vertex $v$.
 * Key transformation for convex hulls + Delaunay.
+![](images/delaunay.svg) ![](images/convex-hull.svg)
 * In 2D, we can do this by finding a counterclockwise ordering of the boundary.
 This fails in 3D.
 
@@ -128,7 +132,7 @@ This fails in 3D.
   - $v$ is in the closure of every new polytope
   - new boundary is the same as the old
 * We can phrase this with linear algebra:
-$$\partial\_n'\cdot\mathbf{1} = \partial\_n\cdot\mathbf{1}$$
+$$\partial\_n'\cdot\mathbf{1} = \left[\begin{matrix}\partial\_n\cdot\mathbf{1} \\\\ 0 \end{matrix}\right]$$
 
 ----
 
@@ -212,9 +216,18 @@ def split(D: List[np.ndarray]) -> List[np.ndarray]:
 [github.com/TopoMesh/zmsh](https://github.com/TopoMesh/zmsh)
 
 
+
 ---
 
-# What next
+# Conclusions
+
+----
+
+### Costs
+
+* Transforming chain complexes = linear algebra.
+* Chain complexes are more expensive to store.
+* But simplicial $\Leftrightarrow$ chain complex representation is easy to compute, so we can just do it locally.
 
 ----
 
@@ -238,7 +251,7 @@ Can we do even more complex things?
 
 ### Acknowledgements
 
-Helpful discussions with Matt Knepley, Tobin Isaac, and Leila de Floriani.
+Helpful discussions with Matt Knepley, Tobin Isaac, Leila de Floriani, and Mauricio del Razo.
 
 ----
 
