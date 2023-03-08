@@ -8,6 +8,12 @@ revealOptions:
 
 # Transforming chain complexes
 
+Daniel Shapero
+
+University of Washington
+
+shapero@uw.edu
+
 ----
 
 ### Overview
@@ -98,9 +104,15 @@ i.e. every edge goes from one vertex to another.
 
 ### Transformations
 
-* Idea: represent meshes as matrices $\Rightarrow$ we can use linear algebraic reasoning to transform them
+Idea: represent meshes as matrices $\Rightarrow$ we can use linear algebraic reasoning to transform them
+
+----
+
+### Merging
+
 * Simplest transformation: *merge* two cells.
 * In linear algebraic terms: add the corresponding columns of the matrix!
+* Key transformation for surface simplification
 
 ----
 
