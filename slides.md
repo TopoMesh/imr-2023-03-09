@@ -16,11 +16,7 @@ shapero@uw.edu
 
 ----
 
-### Overview
-
-* What are chain complexes
-* Transforming chain complexes
-* What next
+**The problem**: How can we make transforming the topology of an unstructured mesh (flips, collapses, ...) easier to implement?
 
 ---
 
@@ -235,9 +231,15 @@ def split(D: List[np.ndarray]) -> List[np.ndarray]:
 
 ----
 
-### Costs
+### Advantages
 
 * Transforming chain complexes = linear algebra.
+* **We can make meshing easier to hack on.**
+
+----
+
+### Disadvantages
+
 * Chain complexes are more expensive to store.
 * But simplicial $\Leftrightarrow$ chain complex representation is easy to compute, so we can just do it locally.
 
